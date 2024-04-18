@@ -20,16 +20,20 @@ public class Graph
         size++;
     }
 
-    public void addEdge(int src , int destination)
+    public boolean addEdge(int src , int destination)
     {
-        if(src > size - 1 || destination > size - 1)
+        if(src >= 0 && destination >= 0)
         {
-            System.out.println("One of these vertices does not exist");
+            if(src > size - 1 || destination > size - 1)
+            {
+                return false;
+            }
+            else
+            {
+                adjacencyList.get(src).add(new Edge(src,destination));
+            }
         }
-        else
-        {
-            adjacencyList.get(src).add(new Edge(src,destination));
-        }
+        return false;
     }
 
     private void printPaths(ArrayList<Edge> edges)
@@ -43,13 +47,55 @@ public class Graph
 
     public void showPaths(int vertex)
     {
-        if(vertex > size - 1)
+        if(vertex >= 0)
         {
-            System.out.println("Vertex does not exist");
+            if(vertex > size - 1)
+            {
+                System.out.println("Vertex does not exist");
+            }
+            else
+            {
+                printPaths(adjacencyList.get(vertex));
+            }
         }
-        else
+    }
+
+    public boolean removeEdge(int src, int destination)
+    {
+        if(src >= 0 && destination >= 0)
         {
-            printPaths(adjacencyList.get(vertex));
+            if(src > size - 1 || destination > size - 1)
+            {
+                return false;
+            }
+            else
+            {
+                ArrayList<Edge> edges = adjacencyList.get(src);
+                for (int i = 0 ; i < edges.size() ; i++)
+                {
+                    if(edges.get(i).destination == destination)
+                    {
+                        edges.remove(i);
+                        return true;
+                    }
+                }
+            }
         }
+        return false;
+    }
+
+    public boolean removeVertice(int vertice)
+    {
+        if (vertice < size && vertice >= 0)
+        {
+            adjacencyList.remove(vertice);
+            for (int i = 0 ; i < adjacencyList.size() ; i++)
+            {
+                removeEdge(i,vertice);
+            }
+            size--;
+            return true;
+        }
+        return false;
     }
 }
