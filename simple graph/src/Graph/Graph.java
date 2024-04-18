@@ -43,7 +43,7 @@ public class Graph
 
     public void showPaths(int vertex)
     {
-        if(vertex > size)
+        if(vertex > size - 1)
         {
             System.out.println("Vertex does not exist");
         }
