@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Graph
 {
     int size;
-    ArrayList<ArrayList<Edge>> adjacencyList;
+    public ArrayList<ArrayList<Edge>> adjacencyList;
 
     public Graph()
     {

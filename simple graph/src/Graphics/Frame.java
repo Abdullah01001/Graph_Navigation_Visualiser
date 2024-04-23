@@ -22,7 +22,7 @@ public class Frame extends JFrame
         EventQueue.invokeLater(() ->
         {
             Graph graph = new Graph();
-            Frame frame = new Frame(graph);
+            new Frame(graph);
         });
     }
 }

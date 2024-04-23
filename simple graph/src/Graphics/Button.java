@@ -9,6 +9,7 @@ public class Button
     Color color;
     int edge;
     final int RADIUS = 30;
+    boolean pressed;
 
     public Button(String name, Point point, Color color, int edge)
     {
@@ -16,6 +17,7 @@ public class Button
         this.point = point;
         this.color = color;
         this.edge = edge;
+        pressed = false;
     }
 
     public boolean inCircle(int x , int y)
@@ -27,5 +29,11 @@ public class Button
     {
         g.setColor(color);
         g.fillOval((point.x - RADIUS/2) , (point.y - RADIUS/2) , RADIUS , RADIUS);
+    }
+
+    public void setPoint(int x , int y)
+    {
+        point.x = x;
+        point.y = y;
     }
 }
